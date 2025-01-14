@@ -12,4 +12,4 @@ def get_mask_account(account: int) -> str:
 
 if __name__ == "__main__":
     print(get_mask_card_number(1564487911112386))
-    print(get_mask_account(65421231849846565465))
+    print(get_mask_account(654212318495846565465))
