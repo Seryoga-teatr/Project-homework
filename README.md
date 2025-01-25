@@ -14,3 +14,8 @@
 if __name__ == "__main__":
     print(mask_account_card('Visa Gold 599899414228426353'))
 ```
+
+# Организовано тестирование проека с pytest:
+* Модуль **masks** - **test_masks** при помощи параметризации;
+* Модуль **processing** - **test_processing** фикстурой из conftest.py;
+* Модуль **widget** - **test_widget** при помощи параметризации.
