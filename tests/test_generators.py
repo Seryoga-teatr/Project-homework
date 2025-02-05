@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency
+from src.generators import filter_by_currency, transaction_descriptions
 
 
 def test_filter_by_currency(transactions):
@@ -36,5 +36,14 @@ def test_filter_by_currency_zero():
 
 
 def test_filter_by_not_currency(transactions):
-    generator_f = filter_by_currency(transactions, "RUB")
+    generator_f = filter_by_currency(transactions, "EURZ")
     assert list(next(generator_f)) == []
+
+
+def test_transaction_descriptions(transactions):
+    generator_t = transaction_descriptions(transactions)
+    assert next(generator_t) == "Перевод организации"
+    assert next(generator_t) == "Перевод со счета на счет"
+    assert next(generator_t) == "Перевод со счета на счет"
+    assert next(generator_t) == "Перевод с карты на карту"
+    assert next(generator_t) == "Перевод организации"
