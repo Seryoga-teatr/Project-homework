@@ -1,9 +1,10 @@
 import pytest
 
-from src.generators import filter_by_currency, transaction_descriptions
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
 
 
 def test_filter_by_currency(transactions):
+    '''Тестирование фильтар трансакций фикстурой'''
     generator_f = filter_by_currency(transactions, "USD")
     assert list(next(generator_f)) == [{
         "id": 939719570,
@@ -31,19 +32,39 @@ def test_filter_by_currency(transactions):
 
 
 def test_filter_by_currency_zero():
+    '''Тестирование фильтар трансакций фикстурой - пустые данные'''
     generator_f = filter_by_currency([], "")
     assert list(next(generator_f)) == []
 
 
 def test_filter_by_not_currency(transactions):
-    generator_f = filter_by_currency(transactions, "EURZ")
+    '''Тестирование фильтар трансакций фикстурой - вид валюты отсутствует'''
+    generator_f = filter_by_currency(transactions, "EUR")
     assert list(next(generator_f)) == []
 
 
 def test_transaction_descriptions(transactions):
+    '''Тестирование генератора описаний операций'''
     generator_t = transaction_descriptions(transactions)
     assert next(generator_t) == "Перевод организации"
     assert next(generator_t) == "Перевод со счета на счет"
     assert next(generator_t) == "Перевод со счета на счет"
     assert next(generator_t) == "Перевод с карты на карту"
     assert next(generator_t) == "Перевод организации"
+
+
+def test_card_number_generator_st_fin():
+    '''Тестирование генератора номеров карт'''
+    generator_t = card_number_generator(9999, 10005)
+    assert next(generator_t) == "0000 0000 0000 9999"
+    assert next(generator_t) == "0000 0000 0001 0000"
+    assert next(generator_t) == "0000 0000 0001 0001"
+
+
+def test_card_number_generator_fin_st():
+    '''Тестирование генератора номеров карт'''
+    generator_t = card_number_generator(100000005, 99999999)
+    assert next(generator_t) == "0000 0000 9999 9999"
+    assert next(generator_t) == "0000 0001 0000 0000"
+    assert next(generator_t) == "0000 0001 0000 0001"
+
