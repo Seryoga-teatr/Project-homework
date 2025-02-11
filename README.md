@@ -8,6 +8,10 @@
 * Модуль **widget** содержит функции:
 -   mask_account_card -> Маскирует названия карты или счета,
 -   get_date          -> Выводит дату в формате: ДД.ММ.ГГГГ
+* Модуль **generators** содержит функции:
+-   filter_by_currency       -> Функция-генератор возвращает транзакции заданной валюты,
+-   transaction_descriptions -> Функция-генератор возвращает описание операции
+-   card_number_generator    -> Функция-генератор номеров банковских карт
 
 # Пример запуска финкции *mask_account_card* в модуле *widget*:
 ```
@@ -19,3 +23,4 @@ if __name__ == "__main__":
 * Модуль **masks** - **test_masks** при помощи параметризации;
 * Модуль **processing** - **test_processing** фикстурой из conftest.py;
 * Модуль **widget** - **test_widget** при помощи параметризации.
+* Модуль **generators** - **test_generators** тест генераторов.
