@@ -30,14 +30,19 @@ def log(filename: str = '') -> Callable[..., Any]:
                             raise Exception(f"error: {e}")
                 except Exception as e:
                     print(f'{func.__name__} error: {e}. Inputs: {args}, {kwargs}')
-                    raise Exception(f"error: {e}")
         return wrapper
     return inner
 
 
 @log('')
 def log_ok(x: int = 5, y: int = 1) -> float:
-    '''Штатный тест'''
+    '''Штатный тест вывода в консоль'''
+    return x / y
+
+
+@log('proba.txt')
+def log_file(x: int = 5, y: int = 1) -> float:
+    '''Штатный тест вывода в файл'''
     return x / y
 
 
@@ -47,10 +52,15 @@ def v_error() -> None:
     raise ValueError("Что то пошло не так!")
 
 
-@log('')
+@log('proba.txt')
+def v_error_file() -> None:
+    '''Тест на ошибку данных'''
+    raise ValueError("Something went wrong!")
+
+
+@log('>>>.txt')
 def f_name() -> None:
     '''Тест на ошибку в имени файла'''
-    raise OSError("Invalid filename!")
+    return
 
-
-# print(log_ok(1, 5))
+# print(v_error_file())
