@@ -1,0 +1,15 @@
+mini error: division by zero. Inputs: (5, 0), {}mini okmini okmini ok
+mini ok
+mini ok
+mini error: division by zero. Inputs: (5, 0), {}
+mini ok
+mini ok
+mini error: division by zero. Inputs: (5, 0), {}
+mini ok
+mini, 0.0 - ok
+mini error: division by zero. Inputs: (8, 0), {}
+mini, 8.0 - ok
+mini, 1.0 - ok
+mini, 0.8888888888888888 - ok
+mini error: division by zero. Inputs: (8, 0), {}
+mini, 1.1428571428571428 - ok

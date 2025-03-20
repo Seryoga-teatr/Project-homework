@@ -1,0 +1,8 @@
+mini, Inputs: (), {} Result: 5.0 - ok
+v_error_file error: Что то пошло не так!. Inputs: (), {}
+v_error_file error: Что то пошло не так!. Inputs: (), {}
+v_error_file error: Что то пошло не так!. Inputs: (), {}
+v_error_file error: Что то пошло не так!. Inputs: (), {}
+v_error_file error: Что то пошло не так!. Inputs: (), {}
+v_error_file error: Что то пошло не так!. Inputs: (), {}
+v_error_file error: Something went wrong!. Inputs: (), {}

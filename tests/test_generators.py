@@ -1,6 +1,6 @@
 import pytest
 
-from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 def test_filter_by_currency(transactions):
@@ -54,7 +54,7 @@ def test_transaction_descriptions(transactions):
 
 
 def test_card_number_generator_st_fin():
-    '''Тестирование генератора номеров карт'''
+    '''Тестирование генератора номеров карт: старт < финиш'''
     generator_t = card_number_generator(9999, 10005)
     assert next(generator_t) == "0000 0000 0000 9999"
     assert next(generator_t) == "0000 0000 0001 0000"
@@ -62,9 +62,9 @@ def test_card_number_generator_st_fin():
 
 
 def test_card_number_generator_fin_st():
-    '''Тестирование генератора номеров карт'''
-    generator_t = card_number_generator(100000005, 99999999)
-    assert next(generator_t) == "0000 0000 9999 9999"
-    assert next(generator_t) == "0000 0001 0000 0000"
-    assert next(generator_t) == "0000 0001 0000 0001"
+    '''Тестирование генератора номеров карт: старт > финиш'''
+    generator_t = card_number_generator(9999999999999999, 9999999999999997)
+    assert next(generator_t) == "9999 9999 9999 9997"
+    assert next(generator_t) == "9999 9999 9999 9998"
+    assert next(generator_t) == "9999 9999 9999 9999"
 
