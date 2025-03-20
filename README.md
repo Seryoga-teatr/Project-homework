@@ -12,6 +12,8 @@
 -   filter_by_currency       -> Функция-генератор возвращает транзакции заданной валюты,
 -   transaction_descriptions -> Функция-генератор возвращает описание операции
 -   card_number_generator    -> Функция-генератор номеров банковских карт
+* Модуль **decorator** содержит функции:
+-   log  -> Декоратор для логирования результов и ошибок в консоль или в файл
 
 # Пример запуска финкции *mask_account_card* в модуле *widget*:
 ```
@@ -24,3 +26,4 @@ if __name__ == "__main__":
 * Модуль **processing** - **test_processing** фикстурой из conftest.py;
 * Модуль **widget** - **test_widget** при помощи параметризации.
 * Модуль **generators** - **test_generators** тест генераторов.
+* Модуль **decorator** - **test_decorator** тест декораторов.
