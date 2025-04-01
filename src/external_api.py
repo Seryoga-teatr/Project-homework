@@ -1,0 +1,52 @@
+# import json
+import requests
+
+
+def transaction_amount_in_rub(transactions: dict) -> float:
+    '''Конвертация суммы транзакции в рубли с использованием ресурса api.apilayer.com'''
+    currency_code = transactions.get('operationAmount').get('currency').get('code')
+    currency_amount = transactions.get('operationAmount').get('amount')
+
+    currency_code_list = ['RUB', 'USD', 'EUR', 'GBP', 'JPY', 'CAD', 'CHF']
+
+    if currency_code == 'RUB':
+        return currency_amount
+    elif currency_code in currency_code_list:
+        url = "https://api.apilayer.com/exchangerates_data/convert"
+        payload = {
+            "amount": currency_amount,
+            "from": currency_code,
+            "to": "RUB"
+        }
+        headers = {
+            "apikey": "a0zIIy2uSSUGwMiSKp5a17LnnO8K6GIG"
+        }
+        response = requests.get(url, headers=headers, params=payload)
+        status_code = response.status_code
+
+        if status_code == 200:
+            result = response.json()
+            return result['result']
+        return f'Некорректный запрос. Статус-код: {status_code}!'
+
+    return f'Ведена некорректная валюта {currency_code}!'
+
+
+# if __name__ == "__main__":
+#     transactions = {
+#         "id": 720751477,
+#         "state": "EXECUTED",
+#         "date": "2018-11-08T08:21:45.902633",
+#         "operationAmount": {
+#             "amount": "10",
+#             "currency": {
+#                 "name": "USD",
+#                 "code0": "RUB",
+#                 "code": "CAD"
+#             }
+#         },
+#         "description": "Перевод организации",
+#         "from": "Счет 75743795418434298755",
+#         "to": "Счет 80785963509390811744"
+#     }
+#     print(transaction_amount_in_rub(transactions))
