@@ -1,4 +1,5 @@
-# import json
+import os
+from dotenv import load_dotenv
 import requests
 
 
@@ -18,8 +19,10 @@ def transaction_amount_in_rub(transactions: dict) -> float:
             "from": currency_code,
             "to": "RUB"
         }
+        load_dotenv()
+        apikey = os.getenv('APIKEY')
         headers = {
-            "apikey": "a0zIIy2uSSUGwMiSKp5a17LnnO8K6GIG"
+            "apikey": apikey
         }
         response = requests.get(url, headers=headers, params=payload)
         status_code = response.status_code
@@ -27,26 +30,27 @@ def transaction_amount_in_rub(transactions: dict) -> float:
         if status_code == 200:
             result = response.json()
             return result['result']
-        return f'Некорректный запрос. Статус-код: {status_code}!'
+        return f'Ошибка при запросе. Статус-код: {status_code}!'
 
     return f'Ведена некорректная валюта {currency_code}!'
 
 
-# if __name__ == "__main__":
-#     transactions = {
-#         "id": 720751477,
-#         "state": "EXECUTED",
-#         "date": "2018-11-08T08:21:45.902633",
-#         "operationAmount": {
-#             "amount": "10",
-#             "currency": {
-#                 "name": "USD",
-#                 "code0": "RUB",
-#                 "code": "CAD"
-#             }
-#         },
-#         "description": "Перевод организации",
-#         "from": "Счет 75743795418434298755",
-#         "to": "Счет 80785963509390811744"
-#     }
-#     print(transaction_amount_in_rub(transactions))
+if __name__ == "__main__":
+    transactions = {
+        "id": 720751477,
+        "state": "EXECUTED",
+        "date": "2018-11-08T08:21:45.902633",
+        "operationAmount": {
+            "amount": "10",
+            "currency": {
+                "name": "USD",
+                "code0": "USD",
+                "code0": "RUB",
+                "code": "CAD"
+            }
+        },
+        "description": "Перевод организации",
+        "from": "Счет 75743795418434298755",
+        "to": "Счет 80785963509390811744"
+    }
+    print(transaction_amount_in_rub(transactions))
