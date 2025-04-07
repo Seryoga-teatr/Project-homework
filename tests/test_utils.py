@@ -32,6 +32,6 @@ pathname_2 = os.path.join(DATA_DIR, 'test_operation.json')
                               (pathname_2, [])])
 def test_get_bad_transactions(variable, expected):
     '''Тестирование преобразования JSON-файла в список
-    1 - тест когда файл не найден,
+    1 - тест когда файл не найден;
     2 - тест с файлом не JSON'''
     assert get_transactions(variable) == expected
