@@ -36,7 +36,7 @@ def test_transaction_error_status_code(mock_get: Any) -> None:
 
 
 def test_transaction_rub_in_rub() -> None:
-    '''Тестирование конвертации с некорректной валютой'''
+    '''Тестирование конвертации RUB -> RUB'''
     transactions = {"id": 720751477,
                     "operationAmount": {"amount": "10",
                                         "currency": {"name": "RUB",

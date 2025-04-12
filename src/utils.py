@@ -15,10 +15,12 @@ def get_transactions(path_name: str) -> list:
                 return data
     except FileNotFoundError:
         return data
-    return json_data
+    if type(json_data) is list:
+        return json_data
+    return data
 
 
 # if __name__ == "__main__":
-#     pathname = os.path.join(DATA_DIR, 'operations.json')
+#     pathname = os.path.join(DATA_DIR, 'test_operations.json')
 #     print(pathname)
 #     print(get_transactions(pathname))

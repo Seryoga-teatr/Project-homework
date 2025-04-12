@@ -28,13 +28,16 @@ def test_get_transactions(mock_json_load: Any, mock_open: Any) -> None:
 
 pathname_1 = os.path.join(DATA_DIR, 'test.json')
 pathname_2 = os.path.join(DATA_DIR, 'test_operation.json')
+pathname_3 = os.path.join(DATA_DIR, 'test_operations.json')
 
 
 @pytest.mark.parametrize("variable, expected",
                          [(pathname_1, []),
-                          (pathname_2, [])])
+                          (pathname_2, []),
+                          (pathname_3, [])])
 def test_get_bad_transactions(variable: str, expected: list) -> None:
     '''Тестирование преобразования JSON-файла в список
     1 - тест когда файл не найден;
-    2 - тест с файлом не JSON'''
+    2 - тест с файлом не JSON
+    3 - тест когда JSON-файл не список'''
     assert get_transactions(variable) == expected

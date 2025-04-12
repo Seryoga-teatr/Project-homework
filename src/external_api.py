@@ -5,6 +5,10 @@ import requests
 from dotenv import load_dotenv
 
 
+load_dotenv()
+apikey = os.getenv('APIKEY')
+
+
 def transaction_amount_in_rub(transactions: dict) -> Any:
     '''Конвертация суммы транзакции в рубли с использованием ресурса api.apilayer.com'''
     currency_code = transactions['operationAmount']['currency']['code']
@@ -21,8 +25,6 @@ def transaction_amount_in_rub(transactions: dict) -> Any:
             "from": currency_code,
             "to": "RUB"
         }
-        load_dotenv()
-        apikey = os.getenv('APIKEY')
         headers = {
             "apikey": apikey
         }
