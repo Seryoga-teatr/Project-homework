@@ -1,5 +1,8 @@
+from typing import Any
+
 import pytest
-from src.masks import get_mask_card_number, get_mask_account
+
+from src.masks import get_mask_account, get_mask_card_number
 
 
 @pytest.mark.parametrize("variable, expected",
@@ -7,7 +10,7 @@ from src.masks import get_mask_card_number, get_mask_account
                           (12345678901234567, 'Неверно введены данные'),
                           ('1234567890123456', 'Неверно введены данные'),
                           (None, 'Неверно введены данные')])
-def test_get_mask_card_number(variable, expected):
+def test_get_mask_card_number(variable: Any, expected: str) -> None:
     '''Тестирование выода маски карты при помощи параметризации'''
     assert get_mask_card_number(variable) == expected
 
@@ -17,6 +20,6 @@ def test_get_mask_card_number(variable, expected):
                           (1234567890123456789, 'Неверно введены данные'),
                           ('12345678901234567890', 'Неверно введены данные'),
                           (None, 'Неверно введены данные')])
-def test_get_mask_account(variable, expected):
+def test_get_mask_account(variable: Any, expected: str) -> None:
     '''Тестирование вывода маски счета при помощи параметризации'''
     assert get_mask_account(variable) == expected

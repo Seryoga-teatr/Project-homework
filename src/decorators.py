@@ -1,14 +1,14 @@
-from collections.abc import Callable
+# from collections.abc import Callable
 from functools import wraps
-from typing import Any
+from typing import Any, Callable
 
 
 def log(filename: str = '') -> Callable[..., Any]:
     '''Декоратор для логирования результов и ошибок в консоль или в файл'''
-    def inner(func):
+    def inner(func: Callable[..., Any]) -> Callable[..., Any]:
         '''Внутренняя функция'''
         @wraps(func)
-        def wrapper(*args: tuple, **kwargs: dict):
+        def wrapper(*args: tuple, **kwargs: dict) -> Any:
             '''Функция - обертка'''
             if filename == '':
                 try:
@@ -61,6 +61,6 @@ def v_error_file() -> None:
 @log('>>>.txt')
 def f_name() -> None:
     '''Тест на ошибку в имени файла'''
-    return
+    # return
 
 # print(v_error_file())
