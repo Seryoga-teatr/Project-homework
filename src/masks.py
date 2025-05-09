@@ -2,10 +2,11 @@ import logging
 import os.path
 from config import LOGS_DIR
 
+
 masks_logger = logging.getLogger(__name__)
 masks_logger.setLevel(logging.DEBUG)
 masks_path = os.path.join(LOGS_DIR, 'masks.log')
-file_hendler = logging.FileHandler(masks_path, mode="w")
+file_hendler = logging.FileHandler(masks_path, mode="w", encoding='utf-8')
 file_formater = logging.Formatter('%(asctime)s - %(filename)s - %(levelname)s: %(message)s')
 file_hendler.setFormatter(file_formater)
 masks_logger.addHandler(file_hendler)
