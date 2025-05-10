@@ -13,7 +13,7 @@ masks_logger.addHandler(file_hendler)
 
 
 def get_mask_card_number(card_number: int = 0) -> str:
-    """Функция возвращения маски по номеру карты"""
+    """Функция возвращения маски по номеру  карты"""
     masks_logger.info('Вызов функции маски карты: get_mask_card_number')
     if type(card_number) is int and len(str(card_number)) == 16:
         mask_number = str(card_number)[0:4] + " " + str(card_number)[4:6] + "** **** " + str(card_number)[-4:]

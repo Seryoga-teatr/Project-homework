@@ -19,7 +19,7 @@ utils_logger.addHandler(file_handler)
 def get_transactions(path_name: str) -> list:
     '''Принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях'''
     utils_logger.info('Вызов функции транзакций: get_transactions')
-    data: list[dict] = []   # файл пустой, если содержит не список или не найден
+    data: list[dict] = []   # файл пустой, если содержит не список  или не найден
     try:
         with open(path_name, 'r', encoding='utf-8') as f:
             try:
