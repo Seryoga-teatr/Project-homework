@@ -1,7 +1,7 @@
 import logging
 import os.path
-from config import LOGS_DIR
 
+from config import LOGS_DIR
 
 masks_logger = logging.getLogger(__name__)
 masks_logger.setLevel(logging.DEBUG)
@@ -17,7 +17,7 @@ def get_mask_card_number(card_number: int = 0) -> str:
     masks_logger.info('Вызов функции маски карты: get_mask_card_number')
     if type(card_number) is int and len(str(card_number)) == 16:
         mask_number = str(card_number)[0:4] + " " + str(card_number)[4:6] + "** **** " + str(card_number)[-4:]
-        masks_logger.info(f'Функция возвратила маску карты')
+        masks_logger.info('Функция возвратила маску карты')
         return mask_number
     masks_logger.error(f'Ошибка в данных карты: <{card_number}>')
     return 'Неверно введены данные'

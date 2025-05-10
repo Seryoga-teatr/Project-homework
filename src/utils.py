@@ -1,17 +1,19 @@
 import json
 import logging
 import os.path
+
 from config import LOGS_DIR
+
 # from config import DATA_DIR, LOGS_DIR
 
 
 utils_logger = logging.getLogger(__name__)
 utils_logger.setLevel(logging.DEBUG)
 utils_path = os.path.join(LOGS_DIR, 'utils.log')
-file_hendler = logging.FileHandler(utils_path, mode="w", encoding='utf-8')
+file_handler = logging.FileHandler(utils_path, mode="w", encoding='utf-8')
 file_formater = logging.Formatter('%(asctime)s - %(filename)s - %(levelname)s: %(message)s')
-file_hendler.setFormatter(file_formater)
-utils_logger.addHandler(file_hendler)
+file_handler.setFormatter(file_formater)
+utils_logger.addHandler(file_handler)
 
 
 def get_transactions(path_name: str) -> list:

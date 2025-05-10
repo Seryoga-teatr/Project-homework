@@ -19,3 +19,7 @@ v_error_file error: Something went wrong!. Inputs: (), {}
 log_file, Inputs: (20, 10), {} Result: 2.0 - ok
 v_error_file error: Something went wrong!. Inputs: (), {}
 log_file, Inputs: (20, 10), {} Result: 2.0 - ok
+v_error_file error: Something went wrong!. Inputs: (), {}
+log_file, Inputs: (20, 10), {} Result: 2.0 - ok
+v_error_file error: Something went wrong!. Inputs: (), {}
+log_file, Inputs: (20, 10), {} Result: 2.0 - ok
