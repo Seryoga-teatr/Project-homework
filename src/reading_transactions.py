@@ -1,16 +1,14 @@
-import csv
+# import csv
 import pandas as pd
 # import os.path
-#
 # from config import DATA_DIR
 
 
 def get_transactions_csvfile(path_name: str) -> list:
     '''Принимает на вход путь до CSV-файла и возвращает список словарей с транзакциями'''
-    data: list[dict] = []
+    transactions_reviews: list[dict] = []
     try:
-        transactions_reviews = pd.read_csv(path_name, sep=';')
-        data = transactions_reviews.to_dict(orient='records')
+        transactions_reviews = pd.read_csv(path_name, sep=';').to_dict(orient='records')
     except FileNotFoundError:
         print('Файл не найден.')
     # except pd.errors.EmptyDataError:
@@ -19,18 +17,17 @@ def get_transactions_csvfile(path_name: str) -> list:
     #     print("Ошибка парсинга данных. Проверьте формат файла.")
     # except Exception as e:
     #     print(f"Произошла ошибка: {e}")
-    return data
+    return transactions_reviews
 
 
 def get_transactions_excelfile(path_name: str) -> list:
     '''Принимает на вход путь до excel-файла и возвращает список словарей с транзакциями'''
-    data: list[dict] = []
+    transactions_reviews: list[dict] = []
     try:
-        transactions_reviews = pd.read_excel(path_name)
-        data = transactions_reviews.to_dict(orient='records')
+        transactions_reviews = pd.read_excel(path_name).to_dict(orient='records')
     except FileNotFoundError:
         print('Файл не найден.')
-    return data
+    return transactions_reviews
 
 
 # if __name__ == "__main__":
@@ -44,4 +41,3 @@ def get_transactions_excelfile(path_name: str) -> list:
 #     print(len(data_csv), len(data_exc))
 #     print(data_csv[:2])
 #     print(data_exc[:2])
-
