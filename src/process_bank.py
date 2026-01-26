@@ -1,4 +1,4 @@
-import os
+# import os
 import re
 
 from reading_transactions import get_transactions_excelfile
@@ -15,6 +15,8 @@ from collections import Counter
 
 
 def process_bank_search(data_list_dict:list[dict], search_description:str)->list[dict]:
+    """функция принимать список словарей с данными и строку поиска,
+    возвращает список словарей, у которых в описании есть данная строка"""
     out_list = []
     pattern = search_description
     for data_dict in data_list_dict:
@@ -26,21 +28,23 @@ def process_bank_search(data_list_dict:list[dict], search_description:str)->list
 
 
 def process_bank_operations(data_list_dict: list[dict], categories: list[str]) -> dict[str, int]:
+    """функцию принимает список словарей с данными и список категорий операций, возвращает словарь:
+    ключи — названия категорий, значения — количество операций в каждой категории"""
     category_list = [operation['description'] for operation in data_list_dict if operation['description'] in categories]
     category_count = Counter(category_list)
     return dict(category_count)
 
 
-if __name__ == "__main__":
-    pathname = os.path.join(DATA_DIR, 'transactions_excel.xlsx')
-    data_exc = get_transactions_excelfile(pathname)
-
-    categories = ['Открытие вклада', 'Перевод организации', 'Перевод с карты на карту']
-    result_dict = process_bank_operations(data_exc, categories)
-    print(result_dict)
-
-
-    # search_d = 'Открытие вклада'
-    # data_search = process_bank_search(data_exc, search_d)
-    # print(len(data_exc), len(data_search))
-    # print(data_search[:2])
+# if __name__ == "__main__":
+#     pathname = os.path.join(DATA_DIR, 'transactions_excel.xlsx')
+#     data_exc = get_transactions_excelfile(pathname)
+#
+#     categories = ['Открытие вклада', 'Перевод организации', 'Перевод с карты на карту', 'Перевод со счета на счет']
+#     result_dict = process_bank_operations(data_exc, categories)
+#     print(result_dict)
+#
+#     search_d = 'Перевод с карты на карту'
+#     data_search = process_bank_search(data_exc, search_d)
+#     print(len(data_exc), len(data_search))
+#     for i in range(10):
+#         print(data_search[i])
