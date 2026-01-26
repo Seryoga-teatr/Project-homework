@@ -2,10 +2,20 @@
 from typing import Any, Dict, Generator
 
 
-def filter_by_currency(trans_actions: list[Dict[str, Any]], currency: str) -> Generator[filter, None, None]:
-    '''Функция-генератор возвращает транзакции заданной валюты Generator[filter[Dict[str, Any]], None, None]'''
+def filter_by_currency_1(trans_actions: list[Dict[str, Any]], currency: str) -> Generator[filter, None, None]:
+    '''Функция-генератор возвращает транзакции заданной валюты
+     для JSON-файла Generator[filter[Dict[str, Any]], None, None]'''
     transaction_filter_currency = filter(
-        lambda x: x.get("operationAmount", {}).get("currency", {}).get("name") == currency, trans_actions)
+        lambda x: x.get("operationAmount", {}).get("currency", {}).get("code") == currency, trans_actions)
+    while True:
+        yield transaction_filter_currency
+
+
+def filter_by_currency_2(trans_actions: list[Dict[str, Any]], currency: str) -> Generator[filter, None, None]:
+    '''Функция-генератор возвращает транзакции заданной валюты
+    для CSV и XLSX-файлов Generator[filter[Dict[str, Any]], None, None]'''
+    transaction_filter_currency = filter(
+        lambda x: x.get("currency_code") == currency, trans_actions)
     while True:
         yield transaction_filter_currency
 
@@ -45,7 +55,8 @@ def card_number_generator(start: int, finish: int) -> Generator[str, None, None]
 #                 "code": "USD"}},
 #         "description": "Перевод организации",
 #         "from": "Счет 75106830613657916952",
-#         "to": "Счет 11776614605963066702"}, {
+#         "to": "Счет 11776614605963066702"},
+#         {
 #         "id": 142264268,
 #         "state": "EXECUTED",
 #         "date": "2019-04-04T23:20:05.206878",
@@ -56,7 +67,8 @@ def card_number_generator(start: int, finish: int) -> Generator[str, None, None]
 #                 "code": "USD"}},
 #         "description": "Перевод со счета на счет",
 #         "from": "Счет 19708645243227258542",
-#         "to": "Счет 75651667383060284188"}, {
+#         "to": "Счет 75651667383060284188"},
+#         {
 #         "id": 142554268,
 #         "state": "EXECUTED",
 #         "date": "2019-05-04T23:20:05.206878",
@@ -67,7 +79,8 @@ def card_number_generator(start: int, finish: int) -> Generator[str, None, None]
 #                 "code": "RUB"}},
 #         "description": "Перевод со счета на счет",
 #         "from": "Счет 15508645243227258542",
-#         "to": "Счет 75651665583060284188"}, {
+#         "to": "Счет 75651665583060284188"},
+#         {
 #         "id": 772264268,
 #         "state": "EXECUTED",
 #         "date": "2019-07-04T23:20:05.206878",
@@ -78,7 +91,8 @@ def card_number_generator(start: int, finish: int) -> Generator[str, None, None]
 #                 "code": "RUB"}},
 #         "description": "Перевод с карты на карту",
 #         "from": "Счет 7770864524322725",
-#         "to": "Счет 77651667383060284188"}, {
+#         "to": "Счет 77651667383060284188"},
+#         {
 #         "id": 882264268,
 #         "state": "EXECUTED",
 #         "date": "2019-08-04T23:20:05.206878",
@@ -92,7 +106,13 @@ def card_number_generator(start: int, finish: int) -> Generator[str, None, None]
 #         "to": "Счет 75651667383060284188"}]
 #     generator_f = filter_by_currency(trans__, "RUB")
 #     print(list(next(generator_f)))
-
-#     descriptions = transaction_descriptions(transactions)
-#     for i in range(5):
-#         print(next(descriptions))
+#
+#     descriptions = transaction_descriptions(trans__)
+#     trans_desc = []
+#     for i in trans__:
+#         if i["description"] not in trans_desc:
+#             trans_desc.append(i["description"])
+#         next(descriptions)
+#     print('-----------------')
+#     for word in range(len(trans_desc)):
+#         print(word+1, trans_desc[word])
