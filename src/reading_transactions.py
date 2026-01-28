@@ -1,11 +1,12 @@
-# import csv
 import pandas as pd
+
+# import csv
 # import os.path
 # from config import DATA_DIR
 
 
 def get_transactions_csvfile(path_name: str) -> list:
-    '''Принимает на вход путь до CSV-файла и возвращает список словарей с транзакциями'''
+    """Принимает на вход путь до CSV-файла и возвращает список словарей с транзакциями"""
     transactions_reviews: list[dict] = []
     try:
         transactions_reviews = pd.read_csv(path_name, sep=';').to_dict(orient='records')
@@ -21,7 +22,7 @@ def get_transactions_csvfile(path_name: str) -> list:
 
 
 def get_transactions_excelfile(path_name: str) -> list:
-    '''Принимает на вход путь до excel-файла и возвращает список словарей с транзакциями'''
+    """Принимает на вход путь до excel-файла и возвращает список словарей с транзакциями"""
     transactions_reviews: list[dict] = []
     try:
         transactions_reviews = pd.read_excel(path_name).to_dict(orient='records')
